@@ -38,6 +38,7 @@ jobs:
     - name: Push
       working-directory: target
       run: |
+        ls -lah
         git init
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
