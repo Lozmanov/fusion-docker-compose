@@ -21,6 +21,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
     
     - name: Create environment files
       run: echo "DEPLOYMENT_TYPE=1" > compose.env && ./setup-env.sh && rm compose.env
@@ -37,13 +39,9 @@ jobs:
       working-directory: target
       run: |
         git init
-        git config --local user.email "lozmanov.viktor@gmail.com"
+        git config --local user.email "Lozmanov.viktor@gmail.com"
         git config --local user.name "Lozmanov"
         git commit -m "Update" -a
         git remote add origin https://github.com/Lozmanov/test.git
         git push -u origin master
         
-    - name: Push changes
-      uses: Lozmanov/test/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
