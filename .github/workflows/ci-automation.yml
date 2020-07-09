@@ -39,8 +39,8 @@ jobs:
       working-directory: target
       run: |
         git init
-        git config --local user.email "Lozmanov.viktor@gmail.com"
-        git config --local user.name "Lozmanov"
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
         git add .
         git commit -m "Update"
         
