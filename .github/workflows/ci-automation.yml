@@ -48,9 +48,8 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.API_TOKEN_GITHUB }}
         directory: target
-        repository: Lozmanov/fusion-docker-compose
-        branch: test
+        repository: Lozmanov/test
         force: true
         
