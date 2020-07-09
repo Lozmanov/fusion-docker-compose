@@ -37,9 +37,13 @@ jobs:
       working-directory: target
       run: |
         git init
-        git config --global user.email "lozmanov.viktor@gmail.com"
-        git config --global user.name "Lozmanov"
-        git add .
-        git commit -m "Update"
+        git config --local user.email "lozmanov.viktor@gmail.com"
+        git config --local user.name "Lozmanov"
+        git commit -m "Update" -a
         git remote add origin https://github.com/Lozmanov/test.git
         git push -u origin master
+        
+    - name: Push changes
+      uses: Lozmanov/test/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
