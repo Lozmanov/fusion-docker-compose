@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  hdp-adls2:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -21,12 +21,14 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    - name: HDP-sandbox to ADLS2 w/ databricks
+    
+    - name: Create environment files
+      run: echo "DEPLOYMENT_TYPE=1" > compose.env && ./setup-env.sh && rm compose.env
+      
+    - name: Move
       run: |
-        echo "DEPLOYMENT_TYPE=1" > compose.env
-        ./setup-env.sh
         mkdir target
-        mv *.env target/
-        ls -lah
+        . .env
+        IFS=':' read -r -a composeFiles <<< "${COMPOSE_FILE}"
+        cp ${composeFiles[@]} *.env target/
         ls -lah target/
