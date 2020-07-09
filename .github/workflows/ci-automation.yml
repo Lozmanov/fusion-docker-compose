@@ -41,7 +41,8 @@ jobs:
         git init
         git config --local user.email "Lozmanov.viktor@gmail.com"
         git config --local user.name "Lozmanov"
-        git commit -m "Update" -a
+        git add .
+        git commit -m "Update"
         git remote add origin https://github.com/Lozmanov/test.git
         git push -u origin master
         
