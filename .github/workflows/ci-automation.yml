@@ -30,5 +30,14 @@ jobs:
         mkdir target
         . .env
         IFS=':' read -r -a composeFiles <<< "${COMPOSE_FILE}"
-        cp ${composeFiles[@]} *.env target/
+        cp ${composeFiles[@]} *.env .env target/
         ls -lah target/
+        
+    - name: Push
+      working-directory: target
+      run: |
+        git init
+        git add .
+        git commit -m "Update"
+        git remote add origin https://github.com/Lozmanov/test.git
+        git push -u origin master
